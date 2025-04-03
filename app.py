@@ -8,6 +8,10 @@ import feedparser
 from helpers import post_to_linkedin, post_to_twitter, extract_image_url
 import random
 import uuid
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = '12345678765'  # Replace with a secure key
@@ -227,4 +231,5 @@ def scheduled_posts():
     return render_template('scheduled.html', linkedin_posts=linkedin_posts, twitter_posts=twitter_posts)
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    port = int(os.environ.get("PORT", 5000))  # Get the port from Render
+    app.run(debug=True, host='0.0.0.0', port=port)
