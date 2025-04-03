@@ -41,7 +41,7 @@ def connect_all():
 
 @app.route('/linkedin/auth')
 def linkedin_auth():
-    redirect_uri = 'https://automationrss-1.onrender.com/linkedin/callback'
+    redirect_uri = 'https://rssautomation.onrender.com/linkedin/callback'
     scope = 'openid profile w_member_social'
     auth_url = (
         f'https://www.linkedin.com/oauth/v2/authorization?'
@@ -59,7 +59,7 @@ def linkedin_callback():
     data = {
         'grant_type': 'authorization_code',
         'code': code,
-        'redirect_uri': 'https://automationrss-1.onrender.com/linkedin/callback',
+        'redirect_uri': 'https://rssautomation.onrender.com/linkedin/callback',
         'client_id': LINKEDIN_CLIENT_ID,
         'client_secret': LINKEDIN_CLIENT_SECRET
     }
@@ -82,7 +82,7 @@ def linkedin_callback():
 
 @app.route('/twitter/auth')
 def twitter_auth():
-    auth = tweepy.OAuth1UserHandler(TWITTER_CLIENT_ID, TWITTER_CLIENT_SECRET, 'https://automationrss-1.onrender.com/twitter/callback')
+    auth = tweepy.OAuth1UserHandler(TWITTER_CLIENT_ID, TWITTER_CLIENT_SECRET, 'https://rssautomation.onrender.com/twitter/callback')
     try:
         redirect_url = auth.get_authorization_url()
         session['request_token'] = auth.request_token

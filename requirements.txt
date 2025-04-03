@@ -6,3 +6,4 @@ feedparser
 langchain_google_genai
 langchain_core
 flask-session
+langchain
