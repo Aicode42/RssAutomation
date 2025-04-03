@@ -227,4 +227,4 @@ def scheduled_posts():
     return render_template('scheduled.html', linkedin_posts=linkedin_posts, twitter_posts=twitter_posts)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5000)
