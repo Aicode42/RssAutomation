@@ -9,6 +9,7 @@ from helpers import post_to_linkedin, post_to_twitter, extract_image_url
 import random
 import uuid
 from dotenv import load_dotenv
+import os
 
 load_dotenv()
 
