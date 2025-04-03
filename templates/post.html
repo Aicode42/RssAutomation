@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Schedule RSS Posts</title>
+    <script>
+        function addRssField() {
+            const container = document.getElementById('rss-container');
+            const newField = document.createElement('div');
+            newField.innerHTML = `
+                <input type="text" name="rss_urls" required>
+                <button type="button" onclick="this.parentElement.remove()">-</button>
+            `;
+            container.appendChild(newField);
+        }
+    </script>
+</head>
+<body>
+    <h1>Schedule RSS Posts</h1>
+    <form method="POST">
+        <div id="rss-container">
+            <div>
+                <label>RSS Feed URL:</label><br>
+                <input type="text" name="rss_urls" required>
+                <button type="button" onclick="addRssField()">+</button>
+            </div>
+        </div>
+        <label>Number of Posts per Day:</label><br>
+        <input type="number" name="posts_per_day" min="1" required><br>
+        <label>Schedule Type:</label><br>
+        <select name="schedule_type">
+            <option value="daily">Daily</option>
+            <option value="weekly">Weekly (5 posts/day × 7 days)</option>
+            <option value="monthly">Monthly (5 posts/day × 30 days)</option>
+        </select><br>
+        <label>First Post Time:</label><br>
+        <input type="datetime-local" name="first_post_time" required><br>
+        <label>Frequency Between Posts:</label><br>
+        <select name="frequency">
+            <option value="30">30 minutes</option>
+            <option value="60">1 hour</option>
+            <option value="120">2 hours</option>
+            <option value="180">3 hours</option>
+        </select><br>
+        <input type="submit" value="Generate Posts">
+    </form>
+    <a href="{{ url_for('scheduled_posts') }}"><button>View Scheduled Posts</button></a>
+    <br>
+    <a href="{{ url_for('home') }}">Back</a>
+</body>
+</html>

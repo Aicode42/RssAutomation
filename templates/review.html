@@ -1,0 +1,44 @@
+<!-- templates/review.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Review Posts</title>
+    <style>
+        /* Keep existing styles */
+    </style>
+</head>
+<body>
+    <h1>Review Generated Posts</h1>
+    <p>First Post Time: {{ first_post_time }}</p>
+    <p>Frequency: {{ frequency }} minutes</p>
+    <form method="POST">
+        <table>
+            <thead>
+                <tr>
+                    <th>Platform</th>
+                    <th>Description</th>
+                    <th>Image URL</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in posts %}
+                    <tr>
+                        <td>{{ post.platform|capitalize }}</td>
+                        <td>{{ post.text }}</td>
+                        <td>
+                            {% if post.image_url %}
+                                <img src="{{ post.image_url }}" alt="Post Image">
+                                <br>{{ post.image_url }}
+                            {% else %}
+                                No image
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <input type="submit" value="Schedule All Posts">
+    </form>
+    <a href="{{ url_for('create_post') }}">Back to Create Post</a>
+</body>
+</html>

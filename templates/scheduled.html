@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scheduled Posts</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        img {
+            max-width: 100px;
+            height: auto;
+        }
+        h2 {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Scheduled Posts</h1>
+    
+    <h2>LinkedIn Posts</h2>
+    {% if linkedin_posts %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Platform</th>
+                    <th>Description</th>
+                    <th>Image URL</th>
+                    <th>Schedule Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in linkedin_posts %}
+                    <tr>
+                        <td>{{ post.platform|capitalize }}</td>
+                        <td>{{ post.text }}</td>
+                        <td>
+                            {% if post.image_url %}
+                                <img src="{{ post.image_url }}" alt="Post Image">
+                                <br>{{ post.image_url }}
+                            {% else %}
+                                No image
+                            {% endif %}
+                        </td>
+                        <td>{{ post.scheduled_time.strftime('%Y-%m-%d %H:%M') }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No LinkedIn posts scheduled.</p>
+    {% endif %}
+    
+    <h2>Twitter Posts</h2>
+    {% if twitter_posts %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Platform</th>
+                    <th>Description</th>
+                    <th>Image URL</th>
+                    <th>Schedule Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in twitter_posts %}
+                    <tr>
+                        <td>{{ post.platform|capitalize }}</td>
+                        <td>{{ post.text }}</td>
+                        <td>
+                            {% if post.image_url %}
+                                <img src="{{ post.image_url }}" alt="Post Image">
+                                <br>{{ post.image_url }}
+                            {% else %}
+                                No image
+                            {% endif %}
+                        </td>
+                        <td>{{ post.scheduled_time.strftime('%Y-%m-%d %H:%M') }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No Twitter posts scheduled.</p>
+    {% endif %}
+    
+    <a href="{{ url_for('home') }}">Back to Home</a>
+    <!-- Existing script content -->
+</body>
+</html>

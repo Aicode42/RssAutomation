@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <style>
+        .platform-status {
+            margin: 10px 0;
+        }
+        .connected {
+            color: green;
+        }
+        .not-connected {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Social Media Scheduler</h1>
+    
+    <div class="platform-status">
+        <p>LinkedIn: 
+            {% if connected_platforms.linkedin %}
+                <span class="connected">Connected ✓</span>
+                <a href="{{ url_for('disconnect', platform='linkedin') }}">Disconnect</a>
+            {% else %}
+                <span class="not-connected">Not Connected</span>
+                <a href="{{ url_for('linkedin_auth') }}">Connect</a>
+            {% endif %}
+        </p>
+    </div>
+    
+    <div class="platform-status">
+        <p>Twitter: 
+            {% if connected_platforms.twitter %}
+                <span class="connected">Connected ✓</span>
+                <a href="{{ url_for('disconnect', platform='twitter') }}">Disconnect</a>
+            {% else %}
+                <span class="not-connected">Not Connected</span>
+                <a href="{{ url_for('twitter_auth') }}">Connect</a>
+            {% endif %}
+        </p>
+    </div>
+    
+    {% if not (connected_platforms.linkedin and connected_platforms.twitter) %}
+        <a href="{{ url_for('connect_all') }}"><button>Connect All Platforms</button></a>
+    {% endif %}
+    
+    {% if connected_platforms.linkedin or connected_platforms.twitter %}
+        <br><a href="{{ url_for('create_post') }}"><button>Go to Post</button></a>
+    {% endif %}
+</body>
+</html>
