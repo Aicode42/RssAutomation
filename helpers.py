@@ -3,10 +3,10 @@ from io import BytesIO
 import requests
 import tweepy
 
-LINKEDIN_CLIENT_ID = '77ekkh40op1d8z'
-LINKEDIN_CLIENT_SECRET = 'WPL_AP1.I3swVoMMQqwi2w5P.wCYC5g=='
-TWITTER_CLIENT_ID = '6Gv4wo17VXi7rKqC15wdrFFNo'
-TWITTER_CLIENT_SECRET = '03XCJYMcjFao3cTrqqhFDERs5wVMklfyBlY2tOBhIZhZwMLWbF'
+LINKEDIN_CLIENT_ID =
+LINKEDIN_CLIENT_SECRET =
+TWITTER_CLIENT_ID =
+TWITTER_CLIENT_SECRET =
 
 def extract_image_url(entry):
     """Extract an image URL from an RSS feed entry."""
